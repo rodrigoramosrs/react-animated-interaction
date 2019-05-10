@@ -21,12 +21,17 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "react": "16.x"
+    "react": "16.x",
+    "styled-components": "^4.2.0",
+    "react-transition-group": "^4.0.1"
   },
   "devDependencies": {
     "nwb": "0.23.x",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.2.0",
+    "prop-types": "^15.7.2",
+    "react-transition-group": "^4.0.1"
   },
   "author": "Rodrigo Ramos",
   "homepage": "https://github.com/rodrigoramosrs/react-animated-interaction",
