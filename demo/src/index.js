@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import { Container, Row, Col } from "reactstrap";
 
 import ReactAnimatedInteraction from "../../src";
 
@@ -13,14 +14,19 @@ class Demo extends Component {
   };
   render() {
     return (
-      <div>
-        <h1>react animated interaction Demo</h1>
-        Click here to:{" "}
-        <input type="button" value="Show/Hide" onClick={this.showHide} />
-        <ReactAnimatedInteraction Show={this.state.Show}>
-          Hello there, nice to meet you!
-        </ReactAnimatedInteraction>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <h1>react animated interaction Demo</h1>
+            Click here to:{" "}
+            <input type="button" value="Show/Hide" onClick={this.showHide} />
+            <ReactAnimatedInteraction Show={this.state.Show}>
+              Hello there, nice to meet you!
+            </ReactAnimatedInteraction>
+          </Col>
+          <Col>.col</Col>
+        </Row>
+      </Container>
     );
   }
 }

@@ -4,25 +4,88 @@ import { CSSTransition } from "react-transition-group";
 import { PropTypes } from "prop-types";
 
 const MainContainer = styled.div`
-  visibility: visible;
-  max-width: 350px;
-  height: 50px;
+  position: absolute;
+  ${props =>
+    props.Show &&
+    css`
+      position: absolute;
+      animation: move-to-element 2s, expand 2s 0.5s;
+    `};
+  ${props =>
+    !props.Show &&
+    css`
+      visibility: visible;
+    `};
 
-  /*margin-left: -125px;*/
-  margin: auto;
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  position: fixed;
+  ${props =>
+    props.state === "exiting" &&
+    css`
+      visibility: visible;
+      --animation: shrink 1.5s 4s, fadeout 0.5s 4.5s;
+      animation: shrink 0.5s 0.5s, fadeout 1s 1s;
+    `};
 
-  z-index: 1;
-  left: 0;
-  right: 0;
-  bottom: 30px;
-  font-size: 17px;
-  white-space: nowrap;
-  border-radius: 24px;
-  text-overflow: ellipsis;
+  ${props => props.state === "exited" && css``};
+
+  @keyframes move-to-element {
+    from {
+      top: 0px;
+    }
+    to {
+      top: 500px;
+    }
+  }
+
+  @keyframes fadein {
+    from {
+      bottom: 2px;
+      opacity: 0;
+    }
+    to {
+      bottom: 30px;
+      opacity: 1;
+    }
+  }
+
+  @keyframes expand {
+    from {
+      min-width: 50px;
+    }
+    to {
+      min-width: 350px;
+    }
+  }
+
+  @keyframes stay {
+    from {
+      min-width: 350px;
+    }
+    to {
+      min-width: 350px;
+    }
+  }
+
+  @keyframes shrink {
+    from {
+      min-width: 350px;
+    }
+    to {
+      min-width: 50px;
+    }
+  }
+
+  @keyframes fadeout {
+    from {
+      min-width: 50px;
+      bottom: 30px;
+      opacity: 1;
+    }
+    to {
+      min-width: 50px;
+      bottom: 60px;
+      opacity: 0;
+    }
+  }
 `;
 
 const ReactAnimatedInteraction = props => {
@@ -31,7 +94,6 @@ const ReactAnimatedInteraction = props => {
       in={props.Show}
       classNames="_bottom-toaster-transition"
       timeout={0}
-      unmountOnExit
     >
       {state => (
         <MainContainer state={state} Show={props.Show}>
